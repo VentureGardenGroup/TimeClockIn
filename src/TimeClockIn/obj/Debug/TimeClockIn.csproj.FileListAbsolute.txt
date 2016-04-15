@@ -1,0 +1,138 @@
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\csc.exe
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\csc.exe.config
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\csc.rsp
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\csi.exe
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\csi.rsp
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\System.AppContext.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\System.Collections.Immutable.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\System.Diagnostics.StackTrace.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\System.IO.FileSystem.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\System.IO.FileSystem.Primitives.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\System.Reflection.Metadata.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\vbc.exe
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\vbc.exe.config
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\vbc.rsp
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\VBCSCompiler.exe
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\roslyn\VBCSCompiler.exe.config
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\TimeClockIn.dll.config
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\TimeClockIn.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\TimeClockIn.pdb
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\Antlr3.Runtime.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\AspNet.ScriptManager.jQuery.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\EntityFramework.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\EntityFramework.SqlServer.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\Microsoft.ScriptManager.jQuery.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\Microsoft.ScriptManager.jQuery.UI.Combined.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\Microsoft.Web.Infrastructure.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\Newtonsoft.Json.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Net.Http.Formatting.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Helpers.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Http.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Http.WebHost.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Mvc.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Optimization.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Razor.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.WebPages.Deployment.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.WebPages.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.WebPages.Razor.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\WebGrease.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\Antlr3.Runtime.pdb
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\EntityFramework.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\EntityFramework.SqlServer.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\Newtonsoft.Json.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Helpers.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Mvc.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Optimization.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Razor.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.WebPages.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.WebPages.Deployment.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.WebPages.Razor.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Net.Http.Formatting.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Http.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\bin\System.Web.Http.WebHost.xml
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\obj\Debug\TimeClockIn.dll
+c:\users\adedamola.akinnurun\documents\visual studio 2015\Projects\TimeClockIn\TimeClockIn\obj\Debug\TimeClockIn.pdb
+C:\Users\Adedamola.Akinnurun\Documents\Visual Studio 2015\Projects\TimeClockIn\TimeClockIn\obj\Debug\TimeClockIn.csprojResolveAssemblyReference.cache
+C:\Users\Adedamola.Akinnurun\Documents\Visual Studio 2015\Projects\TimeClockIn\TimeClockIn\bin\XmlDocument.XML
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\csc.exe
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\csc.exe.config
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\csc.rsp
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\csi.exe
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\csi.rsp
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\System.AppContext.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\vbc.exe
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\vbc.exe.config
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\vbc.rsp
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\VBCSCompiler.exe
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\TimeClockIn.dll.config
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\TimeClockIn.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\TimeClockIn.pdb
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\XmlDocument.XML
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\Antlr3.Runtime.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\EntityFramework.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\EntityFramework.SqlServer.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\Microsoft.ScriptManager.jQuery.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\Microsoft.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\Newtonsoft.Json.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Net.Http.Formatting.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Helpers.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Http.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Http.WebHost.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Mvc.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Optimization.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Razor.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.WebPages.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.WebPages.Razor.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\WebGrease.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\Antlr3.Runtime.pdb
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\EntityFramework.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\EntityFramework.SqlServer.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\Newtonsoft.Json.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Helpers.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Mvc.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Optimization.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Razor.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.WebPages.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.WebPages.Razor.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Net.Http.Formatting.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Http.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Web.Http.WebHost.xml
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\obj\Debug\TimeClockIn.csprojResolveAssemblyReference.cache
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\obj\Debug\TimeClockIn.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\obj\Debug\TimeClockIn.pdb
