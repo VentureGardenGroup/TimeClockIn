@@ -11,7 +11,9 @@ namespace TimeClockIn.Models
     {
         protected override void Seed(TimeClockInContext context)
         {
-            context.Database.ExecuteSqlCommand(File.ReadAllText("~/~/scripts/TIME_TimeClockInData.sql"));
+
+            var filepath = HttpContext.Current.Server.MapPath("~/App_Data/TIME_TimeClockInData.sql");
+            context.Database.ExecuteSqlCommand(File.ReadAllText(filepath));
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using TimeClockIn.App_Start;
 using TimeClockIn.Models;
+using System.IO;
 
 namespace TimeClockIn
 {
@@ -22,6 +23,9 @@ namespace TimeClockIn
         /// </summary>
         protected void Application_Start()
         {
+
+
+
             AreaRegistration.RegisterAllAreas(); // for help pages areas folder
             
             Database.SetInitializer<TimeClockIn.Models.TimeClockInContext>(new TimeClockInInitializer());

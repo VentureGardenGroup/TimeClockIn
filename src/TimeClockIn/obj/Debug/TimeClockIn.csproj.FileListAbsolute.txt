@@ -136,3 +136,5 @@ C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\obj
 C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\obj\Debug\TimeClockIn.dll
 C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\obj\Debug\TimeClockIn.pdb
 C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\Elmah.dll
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\TimeClockIn.dll.config
+C:\Users\Adedamola.Akinnurun\Documents\Code Base\TimeClockIn\src\TimeClockIn\bin\System.Data.SqlServerCe.dll

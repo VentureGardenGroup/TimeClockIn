@@ -601,6 +601,16 @@
             <param name="id">This is the ID to the record being updated</param>
             <param name="Loc">This is the Location record with the updated attributes to be inserted</param>
         </member>
+        <member name="T:TimeClockIn.WebApiApplication">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TimeClockIn.WebApiApplication.Application_Start">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:TimeClockIn.Models.ClockInWithDetails">
             <summary>
             This is a Complex Model used to Add a new ClockInEvent.<br/>
