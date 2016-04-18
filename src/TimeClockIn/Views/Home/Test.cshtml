@@ -1,0 +1,242 @@
+﻿@model IEnumerable<TimeClockIn.Models.Location>
+@{
+    ViewBag.Title = "Test Page";
+}
+<div id="body">
+
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>Test API Endpoints</h2>
+            </hgroup>
+            <p>
+                Please refer to the API Documentmentation for more details
+
+            </p>
+        </div>
+    </section>
+
+    <section class="content-wrapper main-content clear-fix">
+        <div id="GetDiv">
+            <h3>Get ClockIn Method</h3>
+            <input type="button" onclick="doGet()" value="Get Data" />
+        </div>
+
+
+        <br /><br />
+        <div id="GetOneDiv">
+            <h3>Get ClockIn Method By ID</h3>
+            Enter ID:
+            <input type="text" id="searchID" />
+            <input type="button" id="submitId" onclick="doGetOne()" value="Get Data by ID" />
+
+        </div>
+
+        <br /><br />
+        <div id="GetDivEmail">
+            <h3>Get ClockIn Method By User ID - Email</h3>
+            Enter Email:
+            <input type="text" id="searchemail" />
+            <input type="button" id="submitId" onclick="doGetEmail()" value="Get Data by User Email" />
+
+        </div>
+
+        <br /><br />
+        <h3>Post Method - Add New ClockIn Event</h3>
+        <div id="PostDiv">
+            <form id="thepost" name="thepost" method="post">
+
+                Employee Email: <span> <input type="text" name="userid" id="userid" /> </span> <br />
+                Location:  
+                <span>
+                <select id="locationname">
+                    <!-- input type="text" name="locationname" id="locationname" /-->
+                    <option value="" selected="selected">---Select---</option>
+                    @foreach (var location in Model)
+                    {
+                       
+                            <option value="@location.LocationName">@location.LocationName</option>
+
+                    }
+                </select>
+                </span> <br />
+                <br />
+                <input type="button" name="btnsub" id="btnsub" value="Submit" onclick="doPost()" />
+
+            </form>
+         </div>
+
+        <br /><br />
+        <div id="GetLocDiv">
+            <h3>Get Location Method</h3>
+            <input type="button" id="submitId" onclick="doGetLoc()" value="Get Daa" />
+
+        </div>
+
+        <br /><br />
+        <div id="GetLocOneDiv">
+            <h3>Get Location Method - By ID</h3>
+            Enter ID:
+            <input type="text" id="searchID2" />
+            <input type="button" id="submitId" onclick="doGetLocOne()" value="Get Data by ID" />
+
+        </div>
+
+    </section>
+    <script type="text/javascript">
+
+            function doGet() {
+                $.ajax({
+                    url: "http://localhost:7615/api/ClockIn",
+                    type: "Get",
+                    success: function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            $("<ul><li>" + data[i].id +
+                                "</li><li>" + data[i].EmployeeUserId +
+                               "</li><li>" + data[i].LocationName +
+                               "</li><li>" + data[i].ClockInDateTime +
+                               "</li></ul>").appendTo("#GetDiv")
+                        }
+                        // alert("yes");
+                    },
+
+                    error: function (xhr) { alert(xhr.responseText); },
+                    //{ Name: name,
+                    // Address: address, DOB: dob },
+                    contentType: 'application/json; charset=utf-8'
+                });
+            }
+
+            function doGetOne()
+            {
+                var searchId = $("#searchID").val();
+                $.ajax({
+                    url: "http://localhost:7615/api/ClockIn/"+searchId ,
+                    type: "Get",
+                    success: function (data) {
+                        $("<ul><li>" + data.id +
+                                "</li><li>" + data.EmployeeUserId +
+                               "</li><li>" + data.LocationName +
+                               "</li><li>" + data.ClockInDateTime +
+                               "</li></ul>").appendTo("#GetOneDiv")
+
+                    },
+
+                    error: function (xhr) {
+                       
+                        alert(xhr.responseText);
+                       /* var r = jQuery.parseJSON(xhr.responseText);
+                        alert("Message: " + r.Message);
+                        alert("StackTrace: " + r.StackTrace);
+                        alert("ExceptionType: " + r.ExceptionType);*/
+                    },
+                    contentType: 'application/json; charset=utf-8'
+                });
+            }
+
+
+            function doPost() {
+
+                var clockinObj = new Object();
+                clockinObj.EmployeeUserId = $("#userid").val();
+                clockinObj.LocationName = $("#locationname").val();
+                clockinObj.ClockInDateTime = Date.now();
+
+
+                var clockInDetails = new Object();
+                clockInDetails.LocationName = "Home";
+                clockInDetails.Latitude = 6.8764320;
+                clockInDetails.Longitude = 3.9874432;
+                clockInDetails.Address = "18, Era Road, Surulere, Lagos, Nigeria";
+                clockInDetails.EmployeeClockInId = 0;
+
+                var emp = new Object();
+                emp.EmployeeClockIn = clockinObj;
+                emp.EmployeeLocationDetails = null;
+                var empt = JSON.stringify(emp)
+
+                if (clockinObj.LocationName != "---Select---")
+                {
+                    $.ajax({
+                        url: "http://localhost:7615/api/ClockIn/PostClockIn",
+                        type: "Post",
+                        data: empt,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            alert("Clock-In Successful");
+                            //window.location.href = "http://localhost:7615/api/ClockIn"
+                        },
+                        error: function () { alert('error'); }
+                    });
+                }
+
+            }
+
+
+            function doGetLoc() {
+                $.ajax({
+                    url: "http://localhost:7615/api/Location",
+                    type: "Get",
+                    success: function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            $("<ul><li>" + data[i].id +
+                                "</li><li>" + data[i].LocationName +
+                                "</li><li>" + data[i].Latitude +
+                               "</li><li>" + data[i].Longitude +
+                               "</li><li>" + data[i].Address +
+                               "</li></ul>").appendTo("#GetLocDiv")
+                        }
+                        // alert("yes");
+                    },
+
+                    error: function () { alert('error'); },
+                    contentType: 'application/json; charset=utf-8'
+                });
+            }
+
+            function doGetLocOne() {
+                var searchId = $("#searchID2").val();
+                $.ajax({
+                    url: "http://localhost:7615/api/Location/" + searchId,
+                    type: "Get",
+                    success: function (data) {
+                        $("<ul><li>" + data.id +
+                                "</li><li>" + data.LocationName +
+                               "</li><li>" + data.Latitude +
+                               "</li><li>" + data.Longitude +
+                               "</li><li>" + data.Address +
+                               "</li></ul>").appendTo("#GetLocOneDiv")
+
+                    },
+
+                    error: function () { alert('error'); },
+                    contentType: 'application/json; charset=utf-8'
+                });
+            }
+
+            function doGetEmail() {
+                var email = $("#searchemail").val();
+
+                $.ajax({
+                    url: "http://localhost:7615/api/ClockIn/?EmployeeUserId=" + email,
+                    type: "Get",
+                    success: function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            $("<ul><li>" + data[i].id +
+                                "</li><li>" + data[i].EmployeeUserId +
+                               "</li><li>" + data[i].LocationName +
+                               "</li><li>" + data[i].ClockInDateTime +
+                               "</li></ul>").appendTo("#GetDivEmail")
+                        }
+                        // alert("yes");
+                    },
+
+                    error: function () { alert('error'); },
+                    //{ Name: name,
+                    // Address: address, DOB: dob },
+                    contentType: 'application/json; charset=utf-8'
+                });
+            }
+    </script>
+</div>
+

@@ -1,0 +1,6 @@
+namespace TimeClockIn.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
