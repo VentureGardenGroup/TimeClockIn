@@ -1,6 +1,3 @@
-
-
-
 USE [TimeClockIn]
 
 /****** Object:  Table [dbo].[EmployeeClockIn]    Script Date: 18-Apr-16 8:40:23 AM ******/
@@ -55,9 +52,5 @@ CREATE TABLE [dbo].[Location](
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-
-
-USE [master]
-
-ALTER DATABASE [TimeClockIn] SET  READ_WRITE 
+ 
 
