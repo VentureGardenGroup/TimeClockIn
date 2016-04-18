@@ -12,8 +12,14 @@ using TimeClockIn.Models;
 
 namespace TimeClockIn
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class WebApiApplication : System.Web.HttpApplication
     {
+        /// <summary>
+        /// 
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas(); // for help pages areas folder
