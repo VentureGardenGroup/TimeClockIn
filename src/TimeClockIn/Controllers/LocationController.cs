@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using TimeClockIn.Models;
 using TimeClockIn.Repository;
 
@@ -19,10 +22,36 @@ namespace TimeClockIn.Controllers
         /// This returns a list of all REGISTERED office Locations
         /// </summary>
         /// <returns></returns>
+        /// 
+        [HttpGet]
+        [ResponseType(typeof(Location))]
+        public HttpResponseMessage GetLocation()
+        {
+            try
+            {
+                List<Location> locC = LR.Get();
+                if (locC != null)
+                {
+                    return Request.CreateResponse<List<Location>>(HttpStatusCode.OK, locC);
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Error retrieving Locations");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log exception code goes here  
+                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Error retrieving Locations");
+
+            }
+        }
+        /*
         public List<Location> GetLocation()
         {
             return LR.Get();
-        }
+        }*/
 
         //search location by id
         /// <summary>
@@ -32,11 +61,36 @@ namespace TimeClockIn.Controllers
         /// The ID parameter filters the search for a specific loaction
         /// </param>
         /// <returns></returns>
-        public Location GetLocation(int id)
+        /// 
+        [HttpGet]
+        [ResponseType(typeof(Location))]
+        public HttpResponseMessage GetLocation(int id)
+        {
+            try
+            {
+                Location locC = LR.Get(id);
+                if (locC != null)
+                {
+                    return Request.CreateResponse<Location>(HttpStatusCode.OK, locC);
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Error retrieving Location with ID "+id);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log exception code goes here  
+                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Error retrieving Location with ID " + id);
+
+            }
+        }
+       /* public Location GetLocation(int id)
         {
             return LR.Get(id);
-        }
-        
+        }*/
+
         //search location by Name
         /// <summary>
         /// Search for location by the Location name
@@ -46,11 +100,36 @@ namespace TimeClockIn.Controllers
         /// or possible words to search for in all Locations
         /// </param>
         /// <returns>This returns a list of Locations are similar or exactly alike to the parameter specified</returns>
+        [HttpGet]
+        [ResponseType(typeof(Location))]
+        public HttpResponseMessage GetLocation(string LocationName)
+        {
+            try
+            {
+                List<Location> locC = LR.Get(LocationName);
+                if (locC != null)
+                {
+                    return Request.CreateResponse<List<Location>>(HttpStatusCode.OK, locC);
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Error retrieving Location(s) with name : "+LocationName);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log exception code goes here  
+                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error retrieving Location(s) with name: "+LocationName);
+
+            }
+        }
+        /*
         public List<Location> GetLocation (string LocationName)
         {
             return LR.Get(LocationName);
         }
-
+        */
         //Add new location - only by super admin
         /// <summary>
         /// Add a new location
@@ -59,11 +138,32 @@ namespace TimeClockIn.Controllers
         /// This parameter represents the location object to be added.
         /// Expected to have ONLY  LocationName, Latitude, Longitude, Address
         /// </param>
+        /// 
+        [HttpPost]
+        public HttpResponseMessage PostLocation(Location Loc)
+        {
+
+            try
+            {
+                //expecting Loc to have - LocationName, Latitude, Longitude, Address
+                LR.Add(Loc);
+                var response = Request.CreateResponse(HttpStatusCode.Created, Loc);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                // Log exception code goes here  
+                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.NotAcceptable, "Location could not be added");
+
+            }
+        }
+        /*
         public void PostLocation(Location Loc)
         {
             //expecting Loc to have - LocationName, Latitude, Longitude, Address
             LR.Add(Loc);
-        }
+        }*/
 
         //Update Location
         /// <summary>
@@ -71,9 +171,28 @@ namespace TimeClockIn.Controllers
         /// </summary>
         /// <param name="id">This is the ID to the record being updated</param>
         /// <param name="Loc">This is the Location record with the updated attributes to be inserted</param>
-        public void UpdateLocation(int id, Location Loc)
+        [HttpPut]
+        public HttpResponseMessage UpdateLocation(int id, Location Loc)
+        {
+
+            try
+            {
+                //expecting Loc to have - LocationName, Latitude, Longitude, Address
+                LR.Put(id, Loc);
+                var response = Request.CreateResponse(HttpStatusCode.Created, Loc);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                // Log exception code goes here  
+                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.NotAcceptable, "Location with ID " + id + " could not be Updated");
+
+            }
+        }
+       /* public void UpdateLocation(int id, Location Loc)
         {
             LR.Put(id, Loc);
-        }
+        }*/
     }
 }

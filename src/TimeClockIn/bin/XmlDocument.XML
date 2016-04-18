@@ -521,6 +521,7 @@
             ClockIn Events on this particular date. when used with FromDateTime, It must be greater than 
             </param>
             <returns>This returns a list of clockin events based of the specified filters</returns>
+            
         </member>
         <member name="M:TimeClockIn.Controllers.ClockInController.PostClockIn(TimeClockIn.Models.ClockInWithDetails)">
             <summary>
@@ -532,6 +533,7 @@
             Optional parameter, <c>EmployeeLocationDetails</c> is supplied based on 
             ClockIn Locations outside the registered office Locations i.e Home or Site
             </param>
+            
         </member>
         <member name="T:TimeClockIn.Controllers.LocationDetailsController">
             <summary>
@@ -548,6 +550,7 @@
             The endpoint retrieves the location details to an external clock in event
             </param>
             <returns></returns>
+            
         </member>
         <member name="T:TimeClockIn.Controllers.LocationController">
             <summary>
@@ -559,6 +562,7 @@
             This returns a list of all REGISTERED office Locations
             </summary>
             <returns></returns>
+            
         </member>
         <member name="M:TimeClockIn.Controllers.LocationController.GetLocation(System.Int32)">
             <summary>
@@ -568,6 +572,7 @@
             The ID parameter filters the search for a specific loaction
             </param>
             <returns></returns>
+            
         </member>
         <member name="M:TimeClockIn.Controllers.LocationController.GetLocation(System.String)">
             <summary>
@@ -587,6 +592,7 @@
             This parameter represents the location object to be added.
             Expected to have ONLY  LocationName, Latitude, Longitude, Address
             </param>
+            
         </member>
         <member name="M:TimeClockIn.Controllers.LocationController.UpdateLocation(System.Int32,TimeClockIn.Models.Location)">
             <summary>

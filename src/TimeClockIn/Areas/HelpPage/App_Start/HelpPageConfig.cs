@@ -81,7 +81,7 @@ namespace TimeClockIn.Areas.HelpPage
             var postObj = new
             {
                 EmployeeClockIn = new { EmployeeUserId = "dd@dd.com", LocationName = "VGG Oregun" },
-                EmployeeLocationDetails = new { }
+                EmployeeLocationDetails = "null"
             };
             var postObj1 = new
             {
@@ -105,10 +105,6 @@ namespace TimeClockIn.Areas.HelpPage
             //// Uncomment the following to use the image on "../images/aspNetHome.png" directly as the response sample for media type "image/png"
             //// on the controller named "Values" and action named "Get" with parameter "id".
             // config.SetSampleResponse(new ImageSample("../images/aspNetHome.png"), new MediaTypeHeaderValue("image/png"), "Values", "Get", "id");
-            config.SetSampleResponse(new EmployeeClockIn(), new MediaTypeHeaderValue("application/json"), "ClockIn", "Get", "id");
-            config.SetSampleResponse(new EmployeeClockIn(), new MediaTypeHeaderValue("application/json"), "ClockIn", "GetClockIn");
-            config.SetSampleResponse(new Location(), new MediaTypeHeaderValue("application/json"), "Location", "Get", "id");
-            config.SetSampleResponse(new Location(), new MediaTypeHeaderValue("application/json"), "Location", "GetLocation");
             config.SetSampleResponse("Clock-In Successful.", new MediaTypeHeaderValue("text/plain"), "ClockIn", "PostClockIn");
             config.SetSampleResponse("New Location Added.", new MediaTypeHeaderValue("text/plain"), "Location", "PostLocation");
             config.SetSampleResponse("Record Updated.", new MediaTypeHeaderValue("text/plain"), "Location", "UpdateLocation");

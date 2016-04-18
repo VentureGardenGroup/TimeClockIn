@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using TimeClockIn.Models;
 using TimeClockIn.Repository;
 
@@ -22,10 +25,36 @@ namespace TimeClockIn.Controllers
         /// <param name="id">This is a Key value used
         /// to carry out a database search with a specefic ID
         /// </param>
-        public EmployeeClockIn GetClockIn(int id)
+        [HttpGet]
+        [ResponseType(typeof(EmployeeClockIn))]
+        public HttpResponseMessage GetClockIn(int id)
         {
-           return CIR.Get(id);
+            try
+            {
+                EmployeeClockIn empC = CIR.Get(id);
+                if (empC != null)
+                {
+                    return Request.CreateResponse<EmployeeClockIn>(HttpStatusCode.OK, empC);
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Clock-In Event with ID = '"+id+"' does not exist");
+                } 
+            }
+            catch (Exception ex)
+            {
+                // Log exception code goes here  
+               // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Clock-In Event with ID = '" + id + "' does not exist");
+
+            }
         }
+
+        /* public EmployeeClockIn GetClockIn(int id)
+       {
+          return CIR.Get(id);
+       }*/
+
 
         //get clockin details based on several seach parameters
         //get all clockin details
@@ -53,9 +82,30 @@ namespace TimeClockIn.Controllers
         /// ClockIn Events on this particular date. when used with FromDateTime, It must be greater than 
         /// </param>
         /// <returns>This returns a list of clockin events based of the specified filters</returns>
-        public List<EmployeeClockIn> GetClockIn(string EmployeeUserId = "", string LocationName = "", DateTime? FromDateTime = null, DateTime? ToDateTime = null)
+        /// 
+        [HttpGet]
+        [ResponseType(typeof(List<EmployeeClockIn>))]
+        public HttpResponseMessage GetClockIn(string EmployeeUserId = "", string LocationName = "", DateTime? FromDateTime = null, DateTime? ToDateTime = null)
         {
-            return CIR.Get(EmployeeUserId, LocationName, FromDateTime, ToDateTime);
+            try
+            {
+               List<EmployeeClockIn> empC = CIR.Get(EmployeeUserId, LocationName, FromDateTime, ToDateTime);
+                if (empC != null)
+                {
+                    return Request.CreateResponse<List<EmployeeClockIn>>(HttpStatusCode.OK, empC);
+                }
+                else
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Clock-In Event Not Found - Check your search parameters");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log exception code goes here  
+                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Clock - In Event Not Found - Check your search parameters");
+
+            }
         }
 
         //add clockin event here 
@@ -70,9 +120,24 @@ namespace TimeClockIn.Controllers
         /// Optional parameter, <c>EmployeeLocationDetails</c> is supplied based on 
         /// ClockIn Locations outside the registered office Locations i.e Home or Site
         /// </param>
-        public void PostClockIn(ClockInWithDetails ClockInData)
+        /// 
+        [HttpPost]
+        public HttpResponseMessage PostClockIn(ClockInWithDetails ClockInData)
         {
-            CIR.Add(ClockInData);
+            
+            try
+            {
+                CIR.Add(ClockInData);
+                var response = Request.CreateResponse(HttpStatusCode.Created, ClockInData);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                // Log exception code goes here  
+                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.NotAcceptable, "Clock - In Event could not be added");
+
+            }
         }
       
     }

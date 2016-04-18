@@ -100,7 +100,7 @@
                         // alert("yes");
                     },
 
-                    error: function () { alert('error'); },
+                    error: function (xhr) { alert(xhr.responseText); },
                     //{ Name: name,
                     // Address: address, DOB: dob },
                     contentType: 'application/json; charset=utf-8'
@@ -122,9 +122,14 @@
 
                     },
 
-                    error: function () { alert('error'); },
-                    //{ Name: name,
-                    // Address: address, DOB: dob },
+                    error: function (xhr) {
+                       
+                        alert(xhr.responseText);
+                       /* var r = jQuery.parseJSON(xhr.responseText);
+                        alert("Message: " + r.Message);
+                        alert("StackTrace: " + r.StackTrace);
+                        alert("ExceptionType: " + r.ExceptionType);*/
+                    },
                     contentType: 'application/json; charset=utf-8'
                 });
             }
