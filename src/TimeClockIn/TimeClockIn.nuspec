@@ -7,7 +7,7 @@
 	  <description>An Online Clock-In System for VGN</description>
 	  </metadata>
 	  <files>
-	    <file src="*" exclude="*.cs" />
+	    <file src="*"/>
 	    <file src="App_Data\**" target="App_Data" />
 	    <file src="Areas\**" target="Areas" exclude="**\*.cs"/>
 	    <file src="Content\**" target="Content" />
