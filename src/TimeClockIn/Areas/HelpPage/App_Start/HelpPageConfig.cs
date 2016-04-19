@@ -90,8 +90,19 @@ namespace TimeClockIn.Areas.HelpPage
             };
             string sampleClockIn = JsonConvert.SerializeObject(postObj, Formatting.Indented);
             string sampleClockIn1 = JsonConvert.SerializeObject(postObj1, Formatting.Indented);
+
             config.SetSampleRequest(sampleClockIn, new MediaTypeHeaderValue("application/json"), "ClockIn", "PostClockIn");
             config.SetSampleRequest(sampleClockIn1, new MediaTypeHeaderValue("text/json"), "ClockIn", "PostClockIn");
+
+            var postObj3 = new
+            {
+                EmployeeUserId = "dd@dd.com",
+                LocationName = "VGG Oregun",
+                FromDateTime = "2016-04-07",
+                ToDateTime = "2016-04-08"
+            };
+            config.SetSampleRequest(JsonConvert.SerializeObject(postObj3, Formatting.Indented), new MediaTypeHeaderValue("application/json"), "ClockIn", "GetClockIn");
+
             var locObj = new
             {
                 LocationName = "VGG V.Island", Latitude = 6.4444444M, Longitude = 3.5555555M, Address = "Plot X, Eastern Side, Victoria Island, Lagos Nigeria"
