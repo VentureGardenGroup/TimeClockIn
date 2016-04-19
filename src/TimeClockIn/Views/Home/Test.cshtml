@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<TimeClockIn.Models.Location>
+@using System.Configuration;
 @{
     ViewBag.Title = "Test Page";
 }
@@ -54,7 +55,7 @@
                     <option value="" selected="selected">---Select---</option>
                     @foreach (var location in Model)
                     {
-                       
+
                             <option value="@location.LocationName">@location.LocationName</option>
 
                     }
@@ -85,9 +86,12 @@
     </section>
     <script type="text/javascript">
 
-            function doGet() {
+        var url = "@ConfigurationManager.AppSettings["ApiUrlHost"]"
+        
+
+        function doGet() {
                 $.ajax({
-                    url: "http://localhost:7615/api/ClockIn",
+                    url: url + "api/ClockIn",
                     type: "Get",
                     success: function (data) {
                         for (var i = 0; i < data.length; i++) {
@@ -111,10 +115,10 @@
             {
                 var searchId = $("#searchID").val();
                 $.ajax({
-                    url: "http://localhost:7615/api/ClockIn/"+searchId ,
+                    url: url+"api/ClockIn/"+searchId ,
                     type: "Get",
                     success: function (data) {
-                        $("<ul><li>" + data.id +
+                         $("<ul><li>" + data.id +
                                 "</li><li>" + data.EmployeeUserId +
                                "</li><li>" + data.LocationName +
                                "</li><li>" + data.ClockInDateTime +
@@ -158,7 +162,7 @@
                 if (clockinObj.LocationName != "---Select---")
                 {
                     $.ajax({
-                        url: "http://localhost:7615/api/ClockIn/PostClockIn",
+                        url: url+"api/ClockIn/PostClockIn",
                         type: "Post",
                         data: empt,
                         contentType: 'application/json; charset=utf-8',
@@ -175,7 +179,7 @@
 
             function doGetLoc() {
                 $.ajax({
-                    url: "http://localhost:7615/api/Location",
+                    url: url + "api/Location",
                     type: "Get",
                     success: function (data) {
                         for (var i = 0; i < data.length; i++) {
@@ -197,7 +201,7 @@
             function doGetLocOne() {
                 var searchId = $("#searchID2").val();
                 $.ajax({
-                    url: "http://localhost:7615/api/Location/" + searchId,
+                    url: url+"api/Location/" + searchId,
                     type: "Get",
                     success: function (data) {
                         $("<ul><li>" + data.id +
@@ -218,7 +222,7 @@
                 var email = $("#searchemail").val();
 
                 $.ajax({
-                    url: "http://localhost:7615/api/ClockIn/?EmployeeUserId=" + email,
+                    url: url+"api/ClockIn/?EmployeeUserId=" + email,
                     type: "Get",
                     success: function (data) {
                         for (var i = 0; i < data.length; i++) {
