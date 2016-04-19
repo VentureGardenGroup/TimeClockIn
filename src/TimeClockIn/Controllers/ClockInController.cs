@@ -122,6 +122,7 @@ namespace TimeClockIn.Controllers
         /// </param>
         /// 
         [HttpPost]
+        [ResponseType(typeof(EmployeeClockIn))]
         public HttpResponseMessage PostClockIn(ClockInWithDetails ClockInData)
         {
             
