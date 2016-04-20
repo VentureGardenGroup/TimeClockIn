@@ -28,12 +28,12 @@ namespace TimeClockIn.Models
         /// <summary>
         /// Latitude coordinate of the location
         /// </summary>
-        public double Latitude { get; set; }
+        public decimal Latitude { get; set; }
 
         /// <summary>
         /// Longitude coordinate of the location
         /// </summary>
-        public double Longitude { get; set; }
+        public decimal Longitude { get; set; }
 
         /// <summary>
         /// Physical Address of the registered location. e.g ("17B Y Street, Z, Nigeria")
