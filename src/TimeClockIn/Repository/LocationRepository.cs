@@ -38,6 +38,7 @@ namespace TimeClockIn.Repository
         public void Add(Location Loc)
         {
             //expecting Loc to have - LocationName, Latitude, Longitude, Address
+
             tcx.Location.Add(Loc);
             tcx.SaveChanges();
         }

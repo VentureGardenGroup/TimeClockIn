@@ -44,8 +44,8 @@ namespace TimeClockIn.Areas.HelpPage
             //set example formats
             EmployeeClockIn xx = new EmployeeClockIn() { id = 1, EmployeeUserId = "dd@dd.com", LocationName = "VGG Oregun" , ClockInDateTime = new DateTime()};
             EmployeeClockIn xy = new EmployeeClockIn() { id = 2, EmployeeUserId = "cc@cc.com", LocationName = "Site", ClockInDateTime = new DateTime() };
-            Location zz = new Location() { id = 1, LocationName = "VGG EAN Hangar", Latitude = 6.5555555M, Longitude = 3.3333333M, Address = "17 Paper Close, Ikeja" };
-            Location zy = new Location() { id = 2, LocationName = "VGG Oregun", Latitude = 6.5555555M, Longitude = 3.3333333M, Address = "8 Rubber Road, VI" };
+            Location zz = new Location() { id = 1, LocationName = "VGG EAN Hangar", Latitude = 6.5555555, Longitude = 3.3333333, Address = "17 Paper Close, Ikeja" };
+            Location zy = new Location() { id = 2, LocationName = "VGG Oregun", Latitude = 6.5555555, Longitude = 3.3333333, Address = "8 Rubber Road, VI" };
            config.SetSampleObjects(new Dictionary<Type, object>
             {
                 {typeof(EmployeeClockIn), xx},
