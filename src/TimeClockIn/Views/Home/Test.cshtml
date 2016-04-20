@@ -18,229 +18,387 @@
     </section>
 
     <section class="content-wrapper main-content clear-fix">
-        <div id="GetDiv">
+        <div>
             <h3>Get ClockIn Method</h3>
             <input type="button" onclick="doGet()" value="Get Data" />
+            <div id="GetDiv">
+            </div>
         </div>
 
-
         <br /><br />
-        <div id="GetOneDiv">
+        <div>
             <h3>Get ClockIn Method By ID</h3>
             Enter ID:
             <input type="text" id="searchID" />
             <input type="button" id="submitId" onclick="doGetOne()" value="Get Data by ID" />
-
+            <div id="GetOneDiv">
+            </div>
         </div>
-
+        
         <br /><br />
-        <div id="GetDivEmail">
+        <div>
             <h3>Get ClockIn Method By User ID - Email</h3>
             Enter Email:
             <input type="text" id="searchemail" />
             <input type="button" id="submitId" onclick="doGetEmail()" value="Get Data by User Email" />
-
+            <div id="GetDivEmail"></div>
         </div>
 
         <br /><br />
         <h3>Post Method - Add New ClockIn Event</h3>
         <div id="PostDiv">
-            <form id="thepost" name="thepost" method="post">
-
                 Employee Email: <span> <input type="text" name="userid" id="userid" /> </span> <br />
                 Location:  
                 <span>
-                <select id="locationname">
-                    <!-- input type="text" name="locationname" id="locationname" /-->
-                    <option value="" selected="selected">---Select---</option>
-                    @foreach (var location in Model)
-                    {
-
+                    <select id="locationname" onchange="flipView(this.value)">
+                        <option value="---Select---" selected="selected">---Select---</option>
+                        <option value="Home">Home</option>
+                        <option value="Site">Site</option>
+                        @foreach (var location in Model)
+                        {
                             <option value="@location.LocationName">@location.LocationName</option>
 
-                    }
-                </select>
+                        }
+                    </select>
+
                 </span> <br />
+                <div id="flipDiv" hidden="hidden">
+                       Custom Location Name:  <span><input type="text" id="locname" /> </span><br/>
+                       Custom Location Address:  <span><input type="text" id="locaddress" /> </span>
+                       Latitude: <span> <input type="number" id="loclati" /> </span> <br />
+                       Longitude: <span> <input type="number" id="loclongi" /> </span> <br />
+                </div>
                 <br />
                 <input type="button" name="btnsub" id="btnsub" value="Submit" onclick="doPost()" />
 
-            </form>
+     
          </div>
 
         <br /><br />
-        <div id="GetLocDiv">
+        <div>
             <h3>Get Location Method</h3>
-            <input type="button" id="submitId" onclick="doGetLoc()" value="Get Daa" />
-
+            <input type="button" id="submitId" onclick="doGetLoc()" value="Get Data" />
+            <div id="GetLocDiv"></div>
         </div>
 
         <br /><br />
-        <div id="GetLocOneDiv">
+        <div>
             <h3>Get Location Method - By ID</h3>
             Enter ID:
-            <input type="text" id="searchID2" />
-            <input type="button" id="submitId" onclick="doGetLocOne()" value="Get Data by ID" />
+            <input type="text" id="searchID2" /><br/>
+            <input type="button" id="submitId2" onclick="doGetLocOne()" value="Get Data by ID" />
+            <div id="GetLocOneDiv"></div>
+        </div>
 
+        <br /><br />
+        <div>
+            <h3>Get Location Method - By Name</h3>
+            Enter Name:
+            <input type="text" id="locSearchName" /><br/>
+            <input type="button" id="submitId3" onclick="doGetLocName()" value="Get Data by Name" />
+            <div id="GetLocDivName">
+            </div>
+        </div>
+        <br/><br/>
+        <div id="PostLocation">
+            <h3>Add New Location</h3>
+            Location Name: <span> <input type="text" id="locNameTxt" /> </span> <br/>
+            Location Address:<textarea id="locAddressTxt" cols="15" rows="4" maxlength="200"></textarea> <br />
+            Latitude: <span> <input type="number" id="latNum" /> </span> <br />
+            Longitude: <span> <input type="number" id="longNum" /> </span> <br />
+
+            <input type="button" value="Add" id="postlocId"onclick="doPostLocation()"/>
         </div>
 
     </section>
+
+
     <script type="text/javascript">
+
+        function flipView(value)
+        {
+            if (value == "Home" || value == "Site")
+            { $("#flipDiv").show();}
+            else { $("#flipDiv").hide(); }
+        }
 
         var url = "@ConfigurationManager.AppSettings["ApiUrlHost"]"
         
 
         function doGet() {
+            $("#GetDiv").empty();
                 $.ajax({
                     url: url + "api/ClockIn",
                     type: "Get",
                     success: function (data) {
-                        for (var i = 0; i < data.length; i++) {
-                            $("<ul><li>" + data[i].id +
-                                "</li><li>" + data[i].EmployeeUserId +
-                               "</li><li>" + data[i].LocationName +
-                               "</li><li>" + data[i].ClockInDateTime +
-                               "</li></ul>").appendTo("#GetDiv")
-                        }
-                        // alert("yes");
+                        if (data != "") {
+                            for (var i = 0; i < data.length; i++) {
+                                $("<ul><li>" + data[i].id +
+                                    "</li><li>" + data[i].EmployeeUserId +
+                                   "</li><li>" + data[i].LocationName +
+                                   "</li><li>" + data[i].ClockInDateTime +
+                                   "</li></ul>").appendTo("#GetDiv")
+                            }
+                        } else { alert("No records found "); }
                     },
 
                     error: function (xhr) { alert(xhr.responseText); },
-                    //{ Name: name,
-                    // Address: address, DOB: dob },
                     contentType: 'application/json; charset=utf-8'
                 });
             }
 
-            function doGetOne()
-            {
-                var searchId = $("#searchID").val();
-                $.ajax({
-                    url: url+"api/ClockIn/"+searchId ,
-                    type: "Get",
-                    success: function (data) {
-                         $("<ul><li>" + data.id +
-                                "</li><li>" + data.EmployeeUserId +
-                               "</li><li>" + data.LocationName +
-                               "</li><li>" + data.ClockInDateTime +
-                               "</li></ul>").appendTo("#GetOneDiv")
+        function doGetOne()
+        {
+            $("#GetOneDiv").empty();
+            var searchId = $("#searchID").val();
+            if (searchId != "")
+                { 
+                    $.ajax({
+                        url: url+"api/ClockIn/"+searchId ,
+                        type: "Get",
+                        success: function (data) {
+                            if (data != "") {
+                                $("<ul><li>" + data.id +
+                                       "</li><li>" + data.EmployeeUserId +
+                                      "</li><li>" + data.LocationName +
+                                      "</li><li>" + data.ClockInDateTime +
+                                      "</li></ul>").appendTo("#GetOneDiv")
+                            }
+                            else { alert("No record of " + searchId + " found "); }
+                        },
 
-                    },
-
-                    error: function (xhr) {
+                        error: function (xhr) {
                        
-                        alert(xhr.responseText);
-                       /* var r = jQuery.parseJSON(xhr.responseText);
-                        alert("Message: " + r.Message);
-                        alert("StackTrace: " + r.StackTrace);
-                        alert("ExceptionType: " + r.ExceptionType);*/
-                    },
-                    contentType: 'application/json; charset=utf-8'
-                });
+                            alert(xhr.responseText);
+                            /* var r = jQuery.parseJSON(xhr.responseText);
+                             alert("Message: " + r.Message);
+                             alert("StackTrace: " + r.StackTrace);
+                             alert("ExceptionType: " + r.ExceptionType);*/
+                        },
+                        contentType: 'application/json; charset=utf-8'
+                    });
+            } else { alert("Enter Clock-In ID");}
             }
 
+            function doGetEmail() {
+                $("#GetDivEmail").empty();
+                var email = $("#searchemail").val();
+
+                if (email != "") {
+                    $.ajax({
+                        url: url + "api/ClockIn/?EmployeeUserId=" + email,
+                        type: "Get",
+                        success: function (data) {
+
+                            if (data != "") {
+                                for (var i = 0; i < data.length; i++) {
+                                    $("<ul><li>" + data[i].id +
+                                        "</li><li>" + data[i].EmployeeUserId +
+                                       "</li><li>" + data[i].LocationName +
+                                       "</li><li>" + data[i].ClockInDateTime +
+                                       "</li></ul>").appendTo("#GetDivEmail")
+                                };
+                                
+                            } else { alert("No record of " + email + " found ");}
+                            
+                        },
+
+                        error: function (xhr) { alert(xhr.responseText); },
+                        //{ Name: name,
+                        // Address: address, DOB: dob },
+                        contentType: 'application/json; charset=utf-8'
+                    });
+                } else { alert("Enter User Email"); }
+            }
 
             function doPost() {
 
+                var useremailid = $("#userid").val();
+                var locationname = $("#locationname option:selected").text();
+
+                var xlocationname = $("#locname").val();
+                var xaddress = $("#locaddress").val();
+                var lati = $("#loclati").val();
+                var longi = $("#loclongi").val();
+
+
                 var clockinObj = new Object();
-                clockinObj.EmployeeUserId = $("#userid").val();
-                clockinObj.LocationName = $("#locationname").val();
-                clockinObj.ClockInDateTime = Date.now();
+                clockinObj.EmployeeUserId = useremailid;
+                clockinObj.LocationName = locationname;
 
 
                 var clockInDetails = new Object();
-                clockInDetails.LocationName = "Home";
-                clockInDetails.Latitude = 6.8764320;
-                clockInDetails.Longitude = 3.9874432;
-                clockInDetails.Address = "18, Era Road, Surulere, Lagos, Nigeria";
-                clockInDetails.EmployeeClockInId = 0;
+                clockInDetails.LocationName = xlocationname;
+                clockInDetails.Latitude = lati;
+                clockInDetails.Longitude = longi;
+                clockInDetails.Address = xaddress;
 
                 var emp = new Object();
-                emp.EmployeeClockIn = clockinObj;
-                emp.EmployeeLocationDetails = null;
-                var empt = JSON.stringify(emp)
 
-                if (clockinObj.LocationName != "---Select---")
-                {
-                    $.ajax({
-                        url: url+"api/ClockIn/PostClockIn",
-                        type: "Post",
-                        data: empt,
-                        contentType: 'application/json; charset=utf-8',
-                        success: function (data) {
-                            alert("Clock-In Successful");
-                            //window.location.href = "http://localhost:7615/api/ClockIn"
-                        },
-                        error: function () { alert('error'); }
-                    });
-                }
+                if ((locationname != "---Select---") & (useremailid != "")) {
+
+                    if ((locationname == "Home") || (locationname == "Site"))
+                    {
+                        if (xlocationname != "" & xaddress != "" & lati != "" & longi != "" )
+                        {
+                            if (checkDecimal(lati) & checkDecimal(longi)) {
+                                emp.EmployeeClockIn = clockinObj;
+                                emp.EmployeeLocationDetails = clockInDetails;
+                                var emptX = JSON.stringify(emp)
+                                realPost(emptX)
+                            }
+                            else
+                            { alert("Longitude and Latitude must be decimal numbers"); }
+                        }
+                        else { alert("Enter Complete Clock-In Details") }
+
+                    }
+                    else
+                    { 
+                        emp.EmployeeClockIn = clockinObj;
+                        emp.EmployeeLocationDetails = null;
+                        var empt = JSON.stringify(emp);
+                        realPost(empt);
+                       
+                    }
+                } else { alert("Enter Complete Clock-In Details") }
 
             }
 
+            function realPost(value)
+            {
+                $.ajax({
+                    url: url + "api/ClockIn/PostClockIn",
+                    type: "Post",
+                    data: value,
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        alert("Clock-In Successful");
+                    },
+                    error: function (xhr) { alert(xhr.responseText); }
+                });
+            }
+
+            function checkDecimal(value)
+            {
+                if (value % 1 != 0)
+                {//means value is decimal
+                    return true;
+                }
+                else { return false; }
+            }
 
             function doGetLoc() {
+                $("#GetLocDiv").empty();
                 $.ajax({
                     url: url + "api/Location",
                     type: "Get",
                     success: function (data) {
-                        for (var i = 0; i < data.length; i++) {
-                            $("<ul><li>" + data[i].id +
-                                "</li><li>" + data[i].LocationName +
-                                "</li><li>" + data[i].Latitude +
-                               "</li><li>" + data[i].Longitude +
-                               "</li><li>" + data[i].Address +
-                               "</li></ul>").appendTo("#GetLocDiv")
-                        }
-                        // alert("yes");
+                        if (data != ""){ 
+                            for (var i = 0; i < data.length; i++) {
+                                $("<ul><li>" + data[i].id +
+                                    "</li><li>" + data[i].LocationName +
+                                    "</li><li>" + data[i].Latitude +
+                                   "</li><li>" + data[i].Longitude +
+                                   "</li><li>" + data[i].Address +
+                                   "</li></ul>").appendTo("#GetLocDiv")
+                            }
+                        } else { alert("No records found ");}
                     },
-
-                    error: function () { alert('error'); },
+                    error: function (xhr) { alert( xhr.responseText); },
                     contentType: 'application/json; charset=utf-8'
                 });
             }
 
             function doGetLocOne() {
+
                 var searchId = $("#searchID2").val();
-                $.ajax({
-                    url: url+"api/Location/" + searchId,
-                    type: "Get",
-                    success: function (data) {
-                        $("<ul><li>" + data.id +
-                                "</li><li>" + data.LocationName +
-                               "</li><li>" + data.Latitude +
-                               "</li><li>" + data.Longitude +
-                               "</li><li>" + data.Address +
-                               "</li></ul>").appendTo("#GetLocOneDiv")
 
-                    },
+                if (searchId != "") {
+                    $.ajax({
+                        url: url + "api/Location/" + searchId,
+                        type: "Get",
+                        success: function (data) {
+                            if (data != "") { 
+                                $("<ul><li>" + data.id +
+                                        "</li><li>" + data.LocationName +
+                                       "</li><li>" + data.Latitude +
+                                       "</li><li>" + data.Longitude +
+                                       "</li><li>" + data.Address +
+                                       "</li></ul>").appendTo("#GetLocOneDiv")
+                            } else { alert("No record of " + email + " found ");}
+                        },
 
-                    error: function () { alert('error'); },
-                    contentType: 'application/json; charset=utf-8'
-                });
+                        error: function (xhr) { alert(xhr.responseText); },
+                        contentType: 'application/json; charset=utf-8'
+                    });
+                } else { alert("Enter Location ID");}
             }
 
-            function doGetEmail() {
-                var email = $("#searchemail").val();
+            function doGetLocName() {
 
-                $.ajax({
-                    url: url+"api/ClockIn/?EmployeeUserId=" + email,
-                    type: "Get",
-                    success: function (data) {
-                        for (var i = 0; i < data.length; i++) {
-                            $("<ul><li>" + data[i].id +
-                                "</li><li>" + data[i].EmployeeUserId +
-                               "</li><li>" + data[i].LocationName +
-                               "</li><li>" + data[i].ClockInDateTime +
-                               "</li></ul>").appendTo("#GetDivEmail")
-                        }
-                        // alert("yes");
-                    },
+                $("#GetLocDivName").empty();
+                var loc = $("#locSearchName").val();
+                if (loc != "") {
+                    $.ajax({
 
-                    error: function () { alert('error'); },
-                    //{ Name: name,
-                    // Address: address, DOB: dob },
-                    contentType: 'application/json; charset=utf-8'
-                });
+                        url: url + "api/Location?LocationName=" + loc,
+                        type: "Get",
+                        success: function (data) {
+                            
+                            if (data != "") {
+                                
+                                for (var i = 0; i < data.length; i++) {
+                                    $("<ul><li>" + data[i].id +
+                                        "</li><li>" + data[i].LocationName +
+                                        "</li><li>" + data[i].Latitude +
+                                       "</li><li>" + data[i].Longitude +
+                                       "</li><li>" + data[i].Address +
+                                       "</li></ul>").appendTo("#GetLocDivName")
+                                }
+                                
+                            } else { alert("No record of " + loc + " found "); }
+                        },
+                        error: function (xhr) { alert(xhr.responseText); },
+                        contentType: 'application/json; charset=utf-8'
+                    });
+                } else { alert("Enter a Location Name to Search For");}
             }
+
+            function doPostLocation()
+            {
+                var locNameTxt = $("#locNameTxt").val();
+                var locAddressTxt = $("#locAddressTxt").val();
+                var lat = $("#latNum").val();
+                var longN = $("#longNum").val();
+
+                if (locNameTxt != "" & locAddressTxt != "" & lat != "" & longN != "") {
+                  //  alert(locNameTxt + " " + locAddressTxt + " " + lat + " " + longN);
+                    var location = new Object();
+                    location.LocationName = locNameTxt;
+                    location.Latitude = lat;
+                    location.Longitude = longN;
+                    location.Address = locAddressTxt;
+                   // var loc = JSON.stringify(location);
+
+                    $.ajax({
+                        url: url + "api/Location/PostLocation",
+                        type: "Post",
+                        data: location,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            alert("New Location Added");
+                        },
+                        error: function (xhr) { alert( xhr.responseText); }
+                    });
+
+                } else { alert("Enter all details necessary "); }
+            }
+
+            function clearForm() {
+               
+            };
+
     </script>
 </div>
 

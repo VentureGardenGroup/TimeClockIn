@@ -32,20 +32,20 @@ namespace TimeClockIn.Controllers
             try
             {
                 EmployeeClockIn empC = CIR.Get(id);
-                if (empC != null)
+                if (!String.IsNullOrEmpty(empC.ToString()))
                 {
                     return Request.CreateResponse<EmployeeClockIn>(HttpStatusCode.OK, empC);
                 }
                 else
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Clock-In Event with ID = '"+id+"' does not exist");
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Clock-In Event with ID = '"+id+"' not found");
                 } 
             }
             catch (Exception ex)
             {
                 // Log exception code goes here  
                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Clock-In Event with ID = '" + id + "' does not exist");
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Clock-In Event with ID = '" + id + "' not found");
 
             }
         }
@@ -90,20 +90,20 @@ namespace TimeClockIn.Controllers
             try
             {
                List<EmployeeClockIn> empC = CIR.Get(EmployeeUserId, LocationName, FromDateTime, ToDateTime);
-                if (empC != null)
+                if (!String.IsNullOrEmpty(empC.ToString()))
                 {
                     return Request.CreateResponse<List<EmployeeClockIn>>(HttpStatusCode.OK, empC);
                 }
                 else
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Clock-In Event Not Found - Check your search parameters");
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Record Not Found - Check your search parameter(s)");
                 }
             }
             catch (Exception ex)
             {
                 // Log exception code goes here  
                 // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Clock - In Event Not Found - Check your search parameters");
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Record Not Found - Check your search parameter(s)");
 
             }
         }
