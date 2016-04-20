@@ -43,7 +43,7 @@ namespace TimeClockIn.Repository
                 //check if employeeclockinid is set
                 if (EmployeeUserId != string.Empty)
                 {
-                    ClockInQuery = ClockInQuery.Where(e => e.EmployeeUserId.Contains(EmployeeUserId));
+                    ClockInQuery = ClockInQuery.Where(e => e.EmployeeUserId == EmployeeUserId);
                 }
 
                 //check if location is set

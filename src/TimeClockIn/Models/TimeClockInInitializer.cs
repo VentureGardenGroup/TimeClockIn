@@ -7,7 +7,7 @@ using System.Web;
 
 namespace TimeClockIn.Models
 {
-    public class TimeClockInInitializer : CreateDatabaseIfNotExists<TimeClockInContext>
+    public class TimeClockInInitializer :  CreateDatabaseIfNotExists<TimeClockInContext>
     {
         protected override void Seed(TimeClockInContext context)
         {
