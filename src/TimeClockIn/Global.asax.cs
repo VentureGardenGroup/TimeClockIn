@@ -27,8 +27,7 @@ namespace TimeClockIn
 
 
             AreaRegistration.RegisterAllAreas(); // for help pages areas folder
-            
-           // Database.SetInitializer<TimeClockIn.Models.TimeClockInContext>(new TimeClockInInitializer());
+            Database.SetInitializer<TimeClockIn.Models.TimeClockInContext>(null);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
