@@ -1,0 +1,2 @@
+DELETE FROM Location WHERE id= 1
+GO
