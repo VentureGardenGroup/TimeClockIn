@@ -131,17 +131,7 @@ namespace TimeClockIn.Controllers
             
             try
             {
-                //trim data
-                ClockInWithDetails CIW = new ClockInWithDetails();
-                CIW.EmployeeClockIn.EmployeeUserId = ClockInData.EmployeeClockIn.EmployeeUserId.Trim();
-                CIW.EmployeeClockIn.LocationName = ClockInData.EmployeeClockIn.LocationName.Trim();
-
-                CIW.EmployeeLocationDetails.LocationName = ClockInData.EmployeeLocationDetails.LocationName.Trim();
-                CIW.EmployeeLocationDetails.Address = ClockInData.EmployeeLocationDetails.Address.Trim();
-                CIW.EmployeeLocationDetails.Latitude = ClockInData.EmployeeLocationDetails.Latitude;
-                CIW.EmployeeLocationDetails.Longitude = ClockInData.EmployeeLocationDetails.Longitude;
-
-                CIR.Add(CIW);
+                CIR.Add(ClockInData);
                 var response = Request.CreateResponse(HttpStatusCode.Created, ClockInData);
                 return response;
             }
