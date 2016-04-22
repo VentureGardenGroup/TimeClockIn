@@ -153,7 +153,10 @@ namespace TimeClockIn.Repository
                         tcx.EmployeeLocationDetails.Add(ClockInData.EmployeeLocationDetails);
                         tcx.SaveChanges();
                     }
-                    else { }
+                    else {
+                        //what ever happens, if you are not at home or site, add a normal clock in event in vgg location
+                        Add(ClockInData.EmployeeClockIn);
+                    }
                 }
                 else
                 {

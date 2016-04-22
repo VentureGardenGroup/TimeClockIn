@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Elmah;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -32,7 +33,7 @@ namespace TimeClockIn.Controllers
             try
             {
                 EmployeeClockIn empC = CIR.Get(id);
-                if (!String.IsNullOrEmpty(empC.ToString()))
+                if (empC != null)
                 {
                     return Request.CreateResponse<EmployeeClockIn>(HttpStatusCode.OK, empC);
                 }
@@ -43,8 +44,8 @@ namespace TimeClockIn.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception code goes here  
-               // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                // Log exception code goes here 
+                ErrorSignal.FromCurrentContext().Raise(ex); //ELMAH Signaling 
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Clock-In Event with ID = '" + id + "' not found");
 
             }
@@ -89,8 +90,10 @@ namespace TimeClockIn.Controllers
         {
             try
             {
-               List<EmployeeClockIn> empC = CIR.Get(EmployeeUserId, LocationName, FromDateTime, ToDateTime);
-                if (!String.IsNullOrEmpty(empC.ToString()))
+                //trim string attributes with .Trim()
+
+               List<EmployeeClockIn> empC = CIR.Get(EmployeeUserId.Trim(), LocationName.Trim(), FromDateTime, ToDateTime);
+                if (empC != null)
                 {
                     return Request.CreateResponse<List<EmployeeClockIn>>(HttpStatusCode.OK, empC);
                 }
@@ -101,8 +104,8 @@ namespace TimeClockIn.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception code goes here  
-                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                // Log exception code goes here 
+                ErrorSignal.FromCurrentContext().Raise(ex); //ELMAH Signaling 
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Record Not Found - Check your search parameter(s)");
 
             }
@@ -128,14 +131,24 @@ namespace TimeClockIn.Controllers
             
             try
             {
-                CIR.Add(ClockInData);
+                //trim data
+                ClockInWithDetails CIW = new ClockInWithDetails();
+                CIW.EmployeeClockIn.EmployeeUserId = ClockInData.EmployeeClockIn.EmployeeUserId.Trim();
+                CIW.EmployeeClockIn.LocationName = ClockInData.EmployeeClockIn.LocationName.Trim();
+
+                CIW.EmployeeLocationDetails.LocationName = ClockInData.EmployeeLocationDetails.LocationName.Trim();
+                CIW.EmployeeLocationDetails.Address = ClockInData.EmployeeLocationDetails.Address.Trim();
+                CIW.EmployeeLocationDetails.Latitude = ClockInData.EmployeeLocationDetails.Latitude;
+                CIW.EmployeeLocationDetails.Longitude = ClockInData.EmployeeLocationDetails.Longitude;
+
+                CIR.Add(CIW);
                 var response = Request.CreateResponse(HttpStatusCode.Created, ClockInData);
                 return response;
             }
             catch (Exception ex)
             {
-                // Log exception code goes here  
-                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                // Log exception code goes here 
+                ErrorSignal.FromCurrentContext().Raise(ex); //ELMAH Signaling 
                 return Request.CreateErrorResponse(HttpStatusCode.NotAcceptable, "Clock - In Event could not be added");
 
             }

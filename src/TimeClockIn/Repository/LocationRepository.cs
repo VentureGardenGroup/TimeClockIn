@@ -8,6 +8,7 @@ namespace TimeClockIn.Repository
 {
     public class LocationRepository
     {
+
         private TimeClockInContext tcx = new TimeClockInContext();
 
         //get all location details - populate web location dropdown with this - plus Home and Site options
@@ -38,7 +39,6 @@ namespace TimeClockIn.Repository
         public void Add(Location Loc)
         {
             //expecting Loc to have - LocationName, Latitude, Longitude, Address
-
             tcx.Location.Add(Loc);
             tcx.SaveChanges();
         }

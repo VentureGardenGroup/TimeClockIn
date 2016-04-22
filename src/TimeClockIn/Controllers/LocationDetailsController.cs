@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Elmah;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -44,14 +45,11 @@ namespace TimeClockIn.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception code goes here  
-                // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
+                // Log exception code goes here 
+                ErrorSignal.FromCurrentContext().Raise(ex); //ELMAH Signaling 
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Error retrieving Location Details with Clock-In ID " + EmployeeClockInId);
-             }
+            }
         }
-      /*  public EmployeeLocationDetails Get(int EmployeeClockInId)
-        {
-            return ELDR.Get(EmployeeClockInId);
-        }*/
+   
     }
 }
