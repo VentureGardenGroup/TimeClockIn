@@ -145,22 +145,36 @@ namespace TimeClockIn.Repository
 
             try
             {
+                //trim data
+                ClockInWithDetails CIW = new ClockInWithDetails();
+                CIW.EmployeeClockIn = new EmployeeClockIn();
+                CIW.EmployeeClockIn.EmployeeUserId = ClockInData.EmployeeClockIn.EmployeeUserId.Trim();
+                CIW.EmployeeClockIn.LocationName = ClockInData.EmployeeClockIn.LocationName.Trim();
+
+               
+
                 if (ClockInData.EmployeeLocationDetails != null)
                 {
                     if ((ClockInData.EmployeeClockIn.LocationName.Equals("Home")) || (ClockInData.EmployeeClockIn.LocationName.Equals("Site")))
                     {
-                        ClockInData.EmployeeLocationDetails.EmployeeClockInId = Add(ClockInData.EmployeeClockIn); //post the clockin details in EmployeeClockIn; and the details here
-                        tcx.EmployeeLocationDetails.Add(ClockInData.EmployeeLocationDetails);
+                        CIW.EmployeeLocationDetails = new EmployeeLocationDetails();
+                        CIW.EmployeeLocationDetails.LocationName = ClockInData.EmployeeLocationDetails.LocationName.Trim();
+                        CIW.EmployeeLocationDetails.Address = ClockInData.EmployeeLocationDetails.Address.Trim();
+                        CIW.EmployeeLocationDetails.Latitude = ClockInData.EmployeeLocationDetails.Latitude;
+                        CIW.EmployeeLocationDetails.Longitude = ClockInData.EmployeeLocationDetails.Longitude;
+
+                        CIW.EmployeeLocationDetails.EmployeeClockInId = Add(CIW.EmployeeClockIn); //post the clockin details in EmployeeClockIn; and the details here
+                        tcx.EmployeeLocationDetails.Add(CIW.EmployeeLocationDetails);
                         tcx.SaveChanges();
                     }
                     else {
                         //what ever happens, if you are not at home or site, add a normal clock in event in vgg location
-                        Add(ClockInData.EmployeeClockIn);
+                        Add(CIW.EmployeeClockIn);
                     }
                 }
                 else
                 {
-                    Add(ClockInData.EmployeeClockIn);
+                    Add(CIW.EmployeeClockIn);
                 }
             }
             catch (Exception ex)
