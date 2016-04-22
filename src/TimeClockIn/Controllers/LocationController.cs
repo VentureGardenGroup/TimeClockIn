@@ -36,14 +36,14 @@ namespace TimeClockIn.Controllers
                 }
                 else
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Error retrieving Locations");
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Null Returned - Error retrieving Locations");
                 }
             }
             catch (Exception ex)
             {
                 // Log exception code goes here  
                 // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Error retrieving Locations");
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error retrieving Locations");
 
             }
         }
@@ -75,14 +75,14 @@ namespace TimeClockIn.Controllers
                 }
                 else
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Error retrieving Location with ID "+id);
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Null Returned - Error retrieving Location with ID " + id);
                 }
             }
             catch (Exception ex)
             {
                 // Log exception code goes here  
                 // return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error occured while executing GetClockIn(id) ---"+ex.ToString());
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Error retrieving Location with ID " + id);
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error retrieving Location with ID " + id);
 
             }
         }
@@ -106,14 +106,15 @@ namespace TimeClockIn.Controllers
         {
             try
             {
-                List<Location> locC = LR.Get(LocationName);
+
+                List<Location> locC = LR.Get(LocationName.Trim());
                 if (locC != null)
                 {
                     return Request.CreateResponse<List<Location>>(HttpStatusCode.OK, locC);
                 }
                 else
                 {
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, " Error retrieving Location(s) with name : "+LocationName);
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Null Returned - Error retrieving Location(s) with name : " + LocationName);
                 }
             }
             catch (Exception ex)
@@ -146,7 +147,12 @@ namespace TimeClockIn.Controllers
             try
             {
                 //expecting Loc to have - LocationName, Latitude, Longitude, Address
-                LR.Add(Loc);
+                Location newLoc = new Location();
+                newLoc.Latitude = Loc.Latitude;
+                newLoc.Longitude = Loc.Longitude;
+                newLoc.LocationName = Loc.LocationName.Trim();
+                newLoc.Address = Loc.Address.Trim();
+                LR.Add(newLoc);
                 var response = Request.CreateResponse(HttpStatusCode.Created, Loc);
                 return response;
             }

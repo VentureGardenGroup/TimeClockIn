@@ -32,7 +32,7 @@ namespace TimeClockIn.Controllers
             try
             {
                 EmployeeClockIn empC = CIR.Get(id);
-                if (!String.IsNullOrEmpty(empC.ToString()))
+                if (empC != null)
                 {
                     return Request.CreateResponse<EmployeeClockIn>(HttpStatusCode.OK, empC);
                 }
@@ -89,7 +89,9 @@ namespace TimeClockIn.Controllers
         {
             try
             {
-               List<EmployeeClockIn> empC = CIR.Get(EmployeeUserId, LocationName, FromDateTime, ToDateTime);
+                //trim string attributes with .Trim()
+
+               List<EmployeeClockIn> empC = CIR.Get(EmployeeUserId.Trim(), LocationName.Trim(), FromDateTime, ToDateTime);
                 if (!String.IsNullOrEmpty(empC.ToString()))
                 {
                     return Request.CreateResponse<List<EmployeeClockIn>>(HttpStatusCode.OK, empC);
@@ -128,7 +130,17 @@ namespace TimeClockIn.Controllers
             
             try
             {
-                CIR.Add(ClockInData);
+                //trim data
+                ClockInWithDetails CIW = new ClockInWithDetails();
+                CIW.EmployeeClockIn.EmployeeUserId = ClockInData.EmployeeClockIn.EmployeeUserId.Trim();
+                CIW.EmployeeClockIn.LocationName = ClockInData.EmployeeClockIn.LocationName.Trim();
+
+                CIW.EmployeeLocationDetails.LocationName = ClockInData.EmployeeLocationDetails.LocationName.Trim();
+                CIW.EmployeeLocationDetails.Address = ClockInData.EmployeeLocationDetails.Address.Trim();
+                CIW.EmployeeLocationDetails.Latitude = ClockInData.EmployeeLocationDetails.Latitude;
+                CIW.EmployeeLocationDetails.Longitude = ClockInData.EmployeeLocationDetails.Longitude;
+
+                CIR.Add(CIW);
                 var response = Request.CreateResponse(HttpStatusCode.Created, ClockInData);
                 return response;
             }
