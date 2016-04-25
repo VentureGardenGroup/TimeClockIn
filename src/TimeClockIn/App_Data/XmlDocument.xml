@@ -633,6 +633,11 @@
             Address and Location Coordinates (Latitude and Longitude)
             </summary>
         </member>
+        <member name="T:TimeClockIn.Models.EmployeeClockIn">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:TimeClockIn.Models.EmployeeClockIn.id">
             <summary>
             Clock In ID
@@ -651,6 +656,16 @@
         <member name="P:TimeClockIn.Models.EmployeeClockIn.ClockInDateTime">
             <summary>
             ClockIn Date and Time
+            </summary>
+        </member>
+        <member name="P:TimeClockIn.Models.EmployeeClockIn.Latitude">
+            <summary>
+            Current Latitude Location of User
+            </summary>
+        </member>
+        <member name="P:TimeClockIn.Models.EmployeeClockIn.Longitude">
+            <summary>
+            Current Longitude Location of User
             </summary>
         </member>
         <member name="P:TimeClockIn.Models.EmployeeLocationDetails.id">
