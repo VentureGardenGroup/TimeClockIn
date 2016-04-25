@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autonise.Logger.WebApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
@@ -24,6 +25,7 @@ namespace TimeClockIn
             );
             
             config.EnsureInitialized();
+            config.MessageHandlers.Add(new AutoniseApiLogHandler());
         }
     }
 }
