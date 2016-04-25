@@ -7,6 +7,9 @@ using System.Web;
 
 namespace TimeClockIn.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Table("EmployeeClockIn")]
     public class EmployeeClockIn
     {
@@ -30,5 +33,15 @@ namespace TimeClockIn.Models
         /// </summary>
         [Required]
         public DateTime ClockInDateTime { get; set; }
+
+        /// <summary>
+        /// Current Latitude Location of User
+        /// </summary>
+        public double Latitude { get; set; }
+
+        /// <summary>
+        /// Current Longitude Location of User
+        /// </summary>
+        public double Longitude { get; set; }
     }
 }

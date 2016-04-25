@@ -150,8 +150,8 @@ namespace TimeClockIn.Repository
                 CIW.EmployeeClockIn = new EmployeeClockIn();
                 CIW.EmployeeClockIn.EmployeeUserId = ClockInData.EmployeeClockIn.EmployeeUserId.Trim();
                 CIW.EmployeeClockIn.LocationName = ClockInData.EmployeeClockIn.LocationName.Trim();
-
-               
+                CIW.EmployeeClockIn.Latitude = ClockInData.EmployeeClockIn.Latitude;
+                CIW.EmployeeClockIn.Longitude = ClockInData.EmployeeClockIn.Longitude;
 
                 if (ClockInData.EmployeeLocationDetails != null)
                 {
