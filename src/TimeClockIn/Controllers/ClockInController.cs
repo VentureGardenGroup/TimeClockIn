@@ -1,4 +1,5 @@
 ﻿using Elmah;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -130,16 +131,16 @@ namespace TimeClockIn.Controllers
         {
             
             try
-            {
+            { 
                 CIR.Add(ClockInData);
                 var response = Request.CreateResponse(HttpStatusCode.Created, ClockInData);
                 return response;
             }
-            catch (Exception ex)
+            catch (HttpResponseException ex)
             {
                 // Log exception code goes here 
                 ErrorSignal.FromCurrentContext().Raise(ex); //ELMAH Signaling 
-                return Request.CreateErrorResponse(HttpStatusCode.NotAcceptable, "Clock - In Event could not be added");
+                return Request.CreateErrorResponse(HttpStatusCode.NotAcceptable, "Clock - In Event could not be added ::  " + ex.Response.ReasonPhrase);
 
             }
         }

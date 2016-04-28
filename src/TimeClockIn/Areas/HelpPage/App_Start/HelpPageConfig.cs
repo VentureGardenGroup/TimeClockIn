@@ -42,10 +42,10 @@ namespace TimeClockIn.Areas.HelpPage
             //// Also, the string arrays will be used for IEnumerable<string>. The sample objects will be serialized into different media type 
             //// formats by the available formatters.
             //set example formats
-            EmployeeClockIn xx = new EmployeeClockIn() { id = 1, EmployeeUserId = "dd@dd.com", LocationName = "VGG Oregun" , ClockInDateTime = new DateTime()};
-            EmployeeClockIn xy = new EmployeeClockIn() { id = 2, EmployeeUserId = "cc@cc.com", LocationName = "Site", ClockInDateTime = new DateTime() };
-            Location zz = new Location() { id = 1, LocationName = "VGG EAN Hangar", Latitude = 6.5555555, Longitude = 3.3333333, Address = "17 Paper Close, Ikeja" };
-            Location zy = new Location() { id = 2, LocationName = "VGG Oregun", Latitude = 6.5555555, Longitude = 3.3333333, Address = "8 Rubber Road, VI" };
+            EmployeeClockIn xx = new EmployeeClockIn() { id = 1, EmployeeUserId = "dd@dd.com", LocationName = "VGG Oregun" , ClockInDateTime = new DateTime(), Latitude = 6.5555555, Longitude = 3.3333333 };
+            EmployeeClockIn xy = new EmployeeClockIn() { id = 2, EmployeeUserId = "cc@cc.com", LocationName = "Site", ClockInDateTime = new DateTime(),  Latitude = 6.5555555, Longitude = 3.3333333 };
+            Location zz = new Location() { id = 1, LocationName = "VGG EAN Hangar", Latitude = 5.2222222, Longitude = 3.3333333, Address = "17 Paper Close, Ikeja" };
+            Location zy = new Location() { id = 2, LocationName = "VGG Oregun", Latitude = 5.3333333, Longitude = 3.2222222, Address = "8 Rubber Road, VI" };
            config.SetSampleObjects(new Dictionary<Type, object>
             {
                 {typeof(EmployeeClockIn), xx},
@@ -80,13 +80,13 @@ namespace TimeClockIn.Areas.HelpPage
             /// Add new request types for various endpoints
             var postObj = new
             {
-                EmployeeClockIn = new { EmployeeUserId = "dd@dd.com", LocationName = "VGG Oregun" },
+                EmployeeClockIn = new { EmployeeUserId = "dd@dd.com", LocationName = "VGG Oregun", Latitude = 6.5555555, Longitude = 3.4444444 },
                 EmployeeLocationDetails = "null"
             };
             var postObj1 = new
             {
-                EmployeeClockIn = new { EmployeeUserId = "dd@dd.com", LocationName = "Site" },
-                EmployeeLocationDetails = new { LocationName = "The View Hotel", Latitude = 6.5555555M, Longitude = 3.4444444M , Address = "12, Paper Road, Lagos" }
+                EmployeeClockIn = new { EmployeeUserId = "dd@dd.com", LocationName = "Site", Latitude = 6.5555555, Longitude = 3.4444444 },
+                EmployeeLocationDetails = new { LocationName = "The View Hotel", Latitude = 6.5555555, Longitude = 3.4444444 , Address = "12, Paper Road, Lagos" }
             };
             string sampleClockIn = JsonConvert.SerializeObject(postObj, Formatting.Indented);
             string sampleClockIn1 = JsonConvert.SerializeObject(postObj1, Formatting.Indented);
@@ -94,15 +94,7 @@ namespace TimeClockIn.Areas.HelpPage
             config.SetSampleRequest(sampleClockIn, new MediaTypeHeaderValue("application/json"), "ClockIn", "PostClockIn");
             config.SetSampleRequest(sampleClockIn1, new MediaTypeHeaderValue("text/json"), "ClockIn", "PostClockIn");
 
-            var postObj3 = new
-            {
-                EmployeeUserId = "dd@dd.com",
-                LocationName = "VGG Oregun",
-                FromDateTime = "2016-04-07",
-                ToDateTime = "2016-04-08"
-            };
-            config.SetSampleRequest(JsonConvert.SerializeObject(postObj3, Formatting.Indented), new MediaTypeHeaderValue("application/json"), "ClockIn", "GetClockIn");
-
+          
             var locObj = new
             {
                 LocationName = "VGG V.Island", Latitude = 6.4444444M, Longitude = 3.5555555M, Address = "Plot X, Eastern Side, Victoria Island, Lagos Nigeria"

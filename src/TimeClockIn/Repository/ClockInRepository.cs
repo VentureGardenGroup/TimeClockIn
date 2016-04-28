@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Elmah;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Web;
+using System.Web.Http;
 using TimeClockIn.Models;
 
 namespace TimeClockIn.Repository
@@ -95,8 +99,8 @@ namespace TimeClockIn.Repository
             }
             catch (Exception ex)
             {
-                string x = ex.ToString();
-                //log error - display why search couldn't happen
+               //log error - display why search couldn't happen
+                ErrorSignal.FromCurrentContext().Raise(ex); //ELMAH Signaling 
             }
 
             EmpClockIn = ClockInQuery.ToList();
@@ -112,28 +116,14 @@ namespace TimeClockIn.Repository
 
             try
             {
-                /* previously assigned to a new variable - not needed
-                 * EmployeeClockIn ECI = new EmployeeClockIn();
-                 ECI.EmployeeUserId = ClockInData.EmployeeUserId;
-                 ECI.LocationName = ClockInData.LocationName; */
-
-                //format date entering this method
-                string sDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
-                DateTime ClockInDates = DateTime.ParseExact(sDate, "yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture);
-
-                //ECI.ClockInDateTime = ClockInDates;
-                ClockInData.ClockInDateTime = ClockInDates;
-
                 tcx.EmployeeClockIn.Add(ClockInData);
                 tcx.SaveChanges();
-
-                //tcx.Entry(ECI).Reload(); - no need to reload, context is auto updated
 
                 ClockInDataId = ClockInData.id;
             }
             catch (Exception ex)
             {
-                String x = ex.ToString();
+                ErrorSignal.FromCurrentContext().Raise(ex); //ELMAH Signaling 
                 //log error - Post Error , EmployeeUSerId , details
             }
 
@@ -142,9 +132,7 @@ namespace TimeClockIn.Repository
 
         public void Add(ClockInWithDetails ClockInData)
         {
-
-            try
-            {
+            
                 //trim data
                 ClockInWithDetails CIW = new ClockInWithDetails();
                 CIW.EmployeeClockIn = new EmployeeClockIn();
@@ -153,36 +141,132 @@ namespace TimeClockIn.Repository
                 CIW.EmployeeClockIn.Latitude = ClockInData.EmployeeClockIn.Latitude;
                 CIW.EmployeeClockIn.Longitude = ClockInData.EmployeeClockIn.Longitude;
 
+                //format date entering this method
+                string sDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss tt");
+                DateTime ClockInDates = DateTime.ParseExact(sDate, "yyyy-MM-dd hh:mm:ss tt", CultureInfo.InvariantCulture);
+                CIW.EmployeeClockIn.ClockInDateTime = ClockInDates;
+
                 if (ClockInData.EmployeeLocationDetails != null)
                 {
-                    if ((ClockInData.EmployeeClockIn.LocationName.Equals("Home")) || (ClockInData.EmployeeClockIn.LocationName.Equals("Site")))
-                    {
                         CIW.EmployeeLocationDetails = new EmployeeLocationDetails();
                         CIW.EmployeeLocationDetails.LocationName = ClockInData.EmployeeLocationDetails.LocationName.Trim();
                         CIW.EmployeeLocationDetails.Address = ClockInData.EmployeeLocationDetails.Address.Trim();
                         CIW.EmployeeLocationDetails.Latitude = ClockInData.EmployeeLocationDetails.Latitude;
                         CIW.EmployeeLocationDetails.Longitude = ClockInData.EmployeeLocationDetails.Longitude;
 
-                        CIW.EmployeeLocationDetails.EmployeeClockInId = Add(CIW.EmployeeClockIn); //post the clockin details in EmployeeClockIn; and the details here
-                        tcx.EmployeeLocationDetails.Add(CIW.EmployeeLocationDetails);
-                        tcx.SaveChanges();
-                    }
-                    else {
-                        //what ever happens, if you are not at home or site, add a normal clock in event in vgg location
-                        Add(CIW.EmployeeClockIn);
-                    }
+                        //check if clock-in has been done already
+                        if (!isPosted(CIW))
+                        {
+                            CIW.EmployeeLocationDetails.EmployeeClockInId = Add(CIW.EmployeeClockIn); //post the clockin details in EmployeeClockIn; and the details here
+                            tcx.EmployeeLocationDetails.Add(CIW.EmployeeLocationDetails);
+                            tcx.SaveChanges();
+                        }
+                        else {
+                                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotAcceptable)
+                                {
+                                    Content = new StringContent("Clock-In Event already exists for this location"),
+                                    ReasonPhrase = "You have Already Clocked-In to " + CIW.EmployeeClockIn.LocationName + " - " + CIW.EmployeeLocationDetails.LocationName + " today."
+                                });
+                             }
                 }
-                else
+                else //ClockInData == null
                 {
-                    Add(CIW.EmployeeClockIn);
+                    //check for proximity between user location and vgg location
+                    if (isLocated(CIW.EmployeeClockIn.LocationName, CIW.EmployeeClockIn.Latitude, CIW.EmployeeClockIn.Longitude))
+                    {
+                        if (!isPosted(CIW))
+                        {
+                            Add(CIW.EmployeeClockIn);
+                        }
+                        else
+                        {
+                                HttpResponseException ex = new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotAcceptable)
+                                {
+                                    Content = new StringContent("Clock-In Event already exists for this location"),
+                                    ReasonPhrase = "You have Already Clocked-In to " + CIW.EmployeeClockIn.LocationName + " today."
+                                });
+                                ErrorSignal.FromCurrentContext().Raise(ex); //ELMAH Signaling 
+                                throw ex;
+                         } //end else isPosted = true
+                    }
+                    else
+                    {   HttpResponseException ex = new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotAcceptable)
+                            {
+                            Content = new StringContent("Location does not Match"),
+                            ReasonPhrase = "Location Conflict : You are not around " + CIW.EmployeeClockIn.LocationName
+                            });
+                        ErrorSignal.FromCurrentContext().Raise(ex); //ELMAH Signaling 
+                        throw ex;
+                        
+                    } //end else isLocated = false
+
+                }//end else ClockInData == null
+
+        }
+
+
+        //this function checks if clock-in has been made already before every new clock-in event
+        private bool isPosted(ClockInWithDetails ClockInData)
+        {
+            int x = 0, y = 0;
+            try
+            {
+                x = tcx.EmployeeClockIn.Where(ci => ci.EmployeeUserId == ClockInData.EmployeeClockIn.EmployeeUserId
+                                                 & ci.LocationName == ClockInData.EmployeeClockIn.LocationName
+                                                 & ci.ClockInDateTime.Year == ClockInData.EmployeeClockIn.ClockInDateTime.Year
+                                                 & ci.ClockInDateTime.Month == ClockInData.EmployeeClockIn.ClockInDateTime.Month
+                                                 & ci.ClockInDateTime.Day == ClockInData.EmployeeClockIn.ClockInDateTime.Day).Count();
+                if (ClockInData.EmployeeLocationDetails != null)
+                {
+                    y = tcx.EmployeeLocationDetails.Where(eld => eld.LocationName == ClockInData.EmployeeLocationDetails.LocationName
+                                                          & eld.Address == ClockInData.EmployeeLocationDetails.Address).Count();
+                    x = y;
                 }
+
+
             }
             catch (Exception ex)
             {
-                string x = ex.ToString();
-                //log error - display error in user friendly way
+                ErrorSignal.FromCurrentContext().Raise(ex); //ELMAH Signaling 
             }
+
+            return x < 1 ? false : true;
         }
+
+
+        //this function compares user's current location to the selected location before clockin
+        //this feature is only available for VGG location clock-in
+        private bool isLocated(string LocationName, double lati, double longi)
+        {
+            Location loc;
+            double distance = 0, KM = 10; //KM is the defined and accepted distance in kilometers from ccentral vgg location
+
+            try
+            {
+                loc = tcx.Location.Single(l => l.LocationName == LocationName);
+                if (loc != null)
+                { distance = LatLongDistance(loc.Latitude, loc.Longitude, lati, longi); }
+                return (distance <= KM) ? true : false;
+            }
+            catch (HttpResponseException ex)
+            {
+                ErrorSignal.FromCurrentContext().Raise(ex);
+                return false;
+            }
+            
+        }
+
+        //calculate the distance between user's location and vgg location
+        private double LatLongDistance(double centerLat, double centerLong, double posLat, double posLong)
+        {
+            var ky = 40000 / 360;
+            var kx = Math.Cos(Math.PI * centerLat / 180.0) * ky;
+            var dx = Math.Abs(centerLong - posLong) * kx;
+            var dy = Math.Abs(centerLat - posLat) * ky;
+            return Math.Sqrt(dx * dx + dy * dy);
+        }
+
+    
 
     }
 }
