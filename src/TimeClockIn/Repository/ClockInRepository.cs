@@ -239,7 +239,7 @@ namespace TimeClockIn.Repository
         private bool isLocated(string LocationName, double lati, double longi)
         {
             Location loc;
-            double distance = 0, KM = 10; //KM is the defined and accepted distance in kilometers from ccentral vgg location
+            double distance = 0, KM = 0.1; //KM is the defined and accepted distance in kilometers from ccentral vgg location
 
             try
             {
